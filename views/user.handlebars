@@ -1,0 +1,58 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Add Hike</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<h1 align="center">Login Page</h1>
+<h3 align="center"><img src="https://static.westernunion-microsites.com/blog/uploads/2016/12/Hiking-Cover-e1481132901201.jpg" alt="Home Banner" style="width:800px;height:450px;"></h3>
+
+<div class="row">
+	<div class="column3">
+		<h2 align="center">Login</h2>
+		<form align="center" method="POST">
+			<label> Username: <input type="text"></label><br>
+			<label> Password: <input type="text"></label><br>				
+			<input type="submit" value="Login" >
+		</form>
+		<form id="u_delete" align="center" method="POST">
+			<input type="submit" value="Delete Account">
+		</form >
+		<h2 align="center">Sign Up</h2>
+		<form align="center" id="addUser" action="/user" method="POST">
+			<label> First Name: <input type="text" name="firstName"></label><br>
+			<label> Last Name: <input type="text" name="lastName"></label><br>
+			<label> Username: <input type="text" name="username"></label><br>
+			<label> Password: <input type="text" name="password"></label><br>	
+			<input type="submit" value="Create Account" >
+		</form>
+	</div>
+	<div class="column4">
+		<h2 align="center">Current User(s) in the Database</h2>
+		<table align="center">
+		<tbody>
+				<tr>
+					<th>Username</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+				</tr>
+				{{#each hiker}}
+				<tr>
+					<td>{{username}}</td>
+					<td>{{firstName}}</td>
+					<td>{{lastName}}</td>
+					<td><a href="/user/{{id}}">Update</a></td>
+	                <td><button onclick="deletePerson({{id}})">Delete</button></td>
+				{{/each}}
+			</tbody>	
+		</table>
+	</div>
+</div>
+
+
+
+<!--<div align="center" class="length-elevation">Search People in the Database</div>
+<div align="center" id="distance">
+<label align="center" for="people">People: </label>
+<input type="text" id="People" placeholder="Judas King">

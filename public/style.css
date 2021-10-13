@@ -1,0 +1,96 @@
+.mainHeading {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.login_form {
+	margin-left: auto;
+  	margin-right: auto;
+
+}
+
+.login_form input:not([type="submit"]){
+	width: 50%;
+  	padding: 12px 20px;
+  	margin-left: auto;
+  	margin-right: auto;
+
+}
+
+
+.login_form input[type="submit"]{
+  	margin-left: auto;
+  	margin-right: auto;
+
+ 
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+  border-right: 1px solid white;
+}
+
+li a {
+  display: block;
+  color: darkgrey;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+	background-color: red;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.column {
+  float: left;
+  width: 40%;
+  padding-top: 3%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.column2 {
+  width: 60%;
+  padding-top: 3%;
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.column3 {
+  float: left;
+  width: 50%;
+}
+
+.column4 {
+  float: right;
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;

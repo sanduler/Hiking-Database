@@ -1,0 +1,61 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Add Hike</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<h1 align="center">Add a Hike</h1>
+<br>
+<div id="results">
+  <!--Search results go here-->
+</div>
+<br>
+<br>
+
+<div class="row">
+  <div class="column4">
+    <h2 align="center">Don't see a hike? Please add a new one or delete an existing one</h3><br> 
+    <form id="addHike" align="center" action="/addhike" method="POST">
+      <label> Name: <input type="text" name="hikeName"></label> 
+      <br><br> 
+      <label> How long is the Hike? <br> 
+        <label> Distance: <input type="number" step="0.1" min="0" max="3000" name="distance"></label> 
+      <br><br> 
+      <label> What is the elevation of the Hike? <br>  
+        <label> Elevation: <input type="number" min="0" max="30000" name="elevation"></label> 
+      <br><br> 
+      <label> What is the difficulty of the Hike? <br>  
+        <label> Difficulty (scale 1-5): <input type="number" value="1" min="1" max="5" name="difficulty"></label> 
+      <br><br> 
+      <label> What is the overall Rating of the Hike? <br>
+        <label> Rating (scale 1-5): <input type="number" value="1" min="1" max="5" name="averageRating"></label> 
+      <br>
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+  <div class="column3">
+    <h2 align="center">Current Hike(s) in the Database</h2>
+    <table align="center">
+      <tr>
+        <th>Name</th>
+        <th>Distance (miles)</th>
+        <th>Elevation gain (feet)</th>
+        <th>Difficulty</th>
+        <th>Average Rating</th>
+      </tr>
+      {{#each hikes}}
+      <tr>
+        <td>{{hikeName}}</td>
+        <td>{{distance}}</td>
+        <td>{{elevation}}</td>
+        <td>{{difficulty}}</td>
+        <td>{{averageRating}}</td>
+        <td><button onclick="deleteHike({{id}})">Delete</button></td>
+        <td><a href="/addhike/{{id}}">Update</button></td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+</div>
+

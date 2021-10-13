@@ -1,0 +1,43 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Hikes</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<div class="row">
+  <div class="column">
+    </form>
+  </div>
+  <form id="update-location" action="/search" method="post">
+  <div class="column2">
+  <h1> Update Location for a Hike</h1>
+  <table>
+    <tr>
+      <th>Hike Name</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Zip Code</th>
+    </tr>
+    <tr>
+      <td>{{locat.hikeName}}</td>
+      <td>{{locat.state}}</td>
+      <td>{{locat.city}}</td>
+      <td>{{locat.zipCode}}</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <form align="center" id="addLocation" action="/search" method="POST">
+      <label>Choose a Hike to add a location for:</label>
+      <select name="{{hikeName}}">
+          <option value="{{locat.hikeID}}">{{locat.hikeName}}</option>
+      </select><br><br>
+  <label>State:    <input type="text" name="{{state}}"></label><br>
+      <label>City:     <input type="text" name="{{city}}"></label><br>
+      <label>Zip Code:
+        <input type="text" pattern="[0-9]{5}" name="{{zipCode}}">
+      </label><br>
+    <button onclick="updateLocation({{locat.id}})">Update</button>
+  </div>
+</div>

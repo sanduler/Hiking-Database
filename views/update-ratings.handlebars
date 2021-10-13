@@ -1,0 +1,39 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Add Hike</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<br>
+<br>
+</form>
+<form id="update-ratings" action="/ratings" method="post">
+<h1 align="center">Update Rating for {{rate.hikeName}}</h1>
+  <body>
+    <table align="center">
+      <tr>
+        <th>Hike Name</th>
+        <th>Rater's First Name</th>
+        <th>Rater's Last Name</th>
+        <th>Rater's Username</th>
+        <th>Rating (1-5)</th>
+        <th>Rating Date</th>
+      </tr>
+      <tr>
+        <td>{{rate.hikeName}}</td>
+        <td>{{rate.firstName}}</td>
+        <td>{{rate.lastName}}</td>
+        <td>{{rate.username}}</td>
+        <td>{{rate.ratingScore}}</td>
+        <td>{{rate.ratingTime}}</td>
+      </tr>
+    </table>
+  </body>
+  <br>
+  <br>
+  <body align="center">
+    Updated Rating: <input type="number" min="1" max="5" step="0.1" name="ratingScore" value="{{ratingScore}}"><br>
+    </tbody>
+  </form>
+  <button onclick="updateRating({{rate.id}})">Update</button>

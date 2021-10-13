@@ -1,0 +1,45 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Add Hike</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<br>
+<br>
+<h1 align="Left">   Update to the Hike: {{hiking.hikeName}} </h1>
+<br>
+<br>
+<div align="center" class= "column3">
+  <div align="center">
+    <form align="center id="addHike-update" action="/addhike" method="post">
+     <tbody align="center">
+        Hike Name: <input type="text" name="hikeName" value="{{averageRating}}"><br>
+        Distance: <input type="number" step="0.01" min="0" name="distance" value="{{distance}}"><br>
+        Elevation: <input type="number" step="0.01" min="0" name="elevation" value="{{elevation}}"><br>
+        Difficulty (scale 1-10):<input type="number" step="0.01" min="1" max="10" name="difficulty" value="{{difficulty}}"><br>
+        Rating (scale 1-5): <input type="number" min="1" max="5" name="averageRating" value="{{averageRating}}"><br>
+      </tbody>
+     <table align="center">
+       <tr>
+          <th>Name</th>
+          <th>Distance (miles)</th>
+          <th>Elevation gain (feet)</th>
+          <th>Difficulty</th>
+          <th>Average Rating</th>
+        </tr>
+       <tr>
+          <th>{{hiking.hikeName}}</th>
+          <th>{{hiking.distance}} (miles)</th>
+          <th>{{hiking.elevation}}</th>
+          <th>{{hiking.difficulty}}</th>
+          <th>{{hiking.averageRating}}</th>
+        </tr>
+    </form>
+      <button onclick="updateHike({{hiking.id}})">Update</button> 
+      <br>
+      <br> 
+    </table>
+  </div>
+</div>
+

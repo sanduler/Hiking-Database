@@ -1,0 +1,55 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Add Hike</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<h1 align="center">Add a Rating</h1>
+<br>
+<br>
+<form align="center" id="addRating" action="/ratings" method="POST">
+  <label> Choose a Hike to rate:</label><br>
+  <select name="hikeName">
+    {{#each hikes}}
+    <option value="{{hikeID}}">{{hikeName}}</option>
+    {{/each}}
+  </select><br><br>
+  <label> Choose your username: </label><br>
+  <select name="username">
+    {{#each person}}
+    <option value="{{peopleID}}">{{username}}</option>
+    {{/each}}
+  </select><br><br>
+  <label>Enter a Rating (scale 1-5)
+    <input type="number" name="ratingScore" value="1" min="1" max="5">
+    <input type="submit" value="Create Rating">
+  </label>
+  <br>
+  <br>
+
+</form>
+<body>
+  <table align="center">
+    <tr>
+      <th>Hike Name</th>
+      <th>Rater's First Name</th>
+      <th>Rater's Last Name</th>
+      <th>Rater's Username</th>
+      <th>Rating (1-5)</th>
+      <th>Rating Date</th>
+    </tr>
+    {{#each ratings}}
+    <tr>
+      <td>{{hikeName}}</td>
+      <td>{{firstName}}</td>
+      <td>{{lastName}}</td>
+      <td>{{username}}</td>
+      <td>{{ratingScore}}</td>
+      <td>{{ratingTime}}</td>
+      <td><a href="/ratings/{{id}}">Update</a></td>
+      <td><button onclick="deleteRating({{id}})">Delete</button></td>
+    </tr>
+    {{/each}}
+  </table>
+</body>

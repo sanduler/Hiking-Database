@@ -1,0 +1,125 @@
+<ul>
+  <li><a class= "home_nav" href="http://flip3.engr.oregonstate.edu:8674/home">Home</a></li>
+  <li><a class= "search_nav" href="http://flip3.engr.oregonstate.edu:8674/search">Search</a></li>
+  <li><a class= "user_nav" href="http://flip3.engr.oregonstate.edu:8674/user">Login</a></li>
+  <li><a class= "addHike_nav" href="http://flip3.engr.oregonstate.edu:8674/addhike">Add Hike</a></li>
+  <li><a class= "rating_nav" href="http://flip3.engr.oregonstate.edu:8674/ratings">Ratings</a></li>
+</ul>
+<div class="row">
+  <div class="column">
+    <h1 align="center"> Search for a Hike</h1>
+    <div align="center" class="search-header">Search by address 
+      <span align="center" class="browser-location">(<a id="find_me" href="#">Find my current Location</a>)</span>
+      <br></br>
+      <div align="center">
+        <input align="center" class="input-block-level" id="search_address" placeholder="A city, or ZIP code" type="text" autocomplete="off">
+        <div align="center" class="within-line">
+          <label align="center"> within<select class="input-small" id="search_radius"><option value="98682">5 miles
+            </option> 
+            <option value="98682">10 miles</option>
+            <option value="98682">25 miles</option>
+            <option value="98682">50 miles</option>
+            <option value="98682">100 miles</option> 
+            </select> 
+          </label>
+        </div>
+      </div> 
+    </div>
+    <br>
+    <br></br>
+    <div align="center">
+      <span align="center" class="orspan">or</span>
+    </div>
+    <br></br>
+    <div align="center" class="length-elevation">Search by distance and elevation change</div>
+    <div align="center" id="distance">
+      <label align="center" for="distance">Length: </label>
+      <input type="text" onClick="window.location.href = getNewLocation('search-hike')" id="distance">
+    </div>
+    <div align="center" class="elevation">
+      <label align="center" for="elevation">Elevation: </label>
+      <input align="center" onClick="window.location.href = getNewLocation('search-hike')"type="text" id="elevation">
+    </div>
+    <div align="center" id="elevation submit box">
+      <div align="center" class="elevation submit box">
+        <input align="center"class="btn-primary" id="second-search" type="button" value="Search"></input>
+      </div>
+    </div>
+    <form id='search_hike' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search hike starting with:</label>
+    <input id='hike_name_search_string' type='text' name='hike_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchHikeByName()">
+</form>
+    <br></br>
+    <div align="center">
+      <span align="center" class="orspan">or</span>
+    </div>
+    <br></br>
+    <div align="center">
+      <label> Search by the difficulty of the Hike: <br>  
+        <label> Difficulty (scale 1-5): 
+          <input type="number" value="1" min = "1" max = "5">
+          <input type="submit">
+        </label>
+      </label>
+    </div>
+    <br></br>
+    <div align="center">
+      <span align="center" class="orspan">or</span>
+    </div>
+    <br></br>
+    <div align="center">
+      <label> Search by Rating of the Hike<br>
+        <label> Rating (scale 1-5): 
+          <input type="number" value="1" min = "1" max = "5">
+        </label>  
+        <input type="submit">
+      </label>
+    </div>
+  </div>
+  <div class="column2">
+    <h2> <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"></h2>
+  </div>
+</div>
+<div class="row">
+<div class="column">
+    <h2 align="center">Add a new Location</h2>
+    <br>
+    <form align="center" id="addLocation" action="/search" method="POST">
+      <label>Choose a Hike to add a location for:</label>
+      <select name="hikeName">
+        {{#each hikes}}
+          <option value="{{hikeID}}">{{hikeName}}</option>
+        {{/each}}
+      </select><br><br>
+      <label>State:    <input type="text" name="state"></label><br>
+      <label>City:     <input type="text" name="city"></label><br>
+      <label>Zip Code:
+        <input type="text" pattern="[0-9]{5}" name="zipCode">
+        <input type="submit" value="Create Location">
+      </label><br>
+    </form>
+  </div>
+  <div class="column2">
+    <h2 align="center">Hiking Locations</h2>
+  <table align="center">
+    <tr>
+      <th>Hike Name</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Zip Code</th>
+    </tr>
+    {{#each locations}}
+    <tr>
+      <td>{{hikeName}}</td>
+      <td>{{state}}</td>
+      <td>{{city}}</td>
+      <td>{{zipCode}}</td>
+      <td><a href="/search/{{id}}">Update</button></td>
+      <td><button onclick="deleteLocation({{id}})">Delete</button></td>
+    </tr>
+    {{/each}}
+  </table>
+  </div>
+</div>
