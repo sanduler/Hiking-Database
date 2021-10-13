@@ -1,0 +1,48 @@
+# SasquatchesRUs
+Project Repository for CS340 Project about Hikes in the PNW
+
+Our database represents a database with different types of hikes that are found throughout the Oregon and Washington Columbia River Gorge area. The Columbia River Gorge is one of the largest natural areas in the United States. The area contains some of the most renowned habitats and environments for wildlife and beautiful scenery. Some examples include areas that are a combination of rain forest and desert, sea-level passages and meadows. The Gorge is a source for hundreds of trails just ready to be explored. This area contains numerous people and different types of locations that people go to on a daily basis. Using this database one will be able to record any hike they want to share with others. The problem that this database resolves is it allows for the recording of the different hikes and an overall rating for each of the hikes. The web provides a visual representation of the hike and yields useful information such as distance, elevation, and difficulty. In addition, this database allows for the individual to plan his or her next hike based on user rating, while being able to check the location of the hike.
+
+The website that our database is connected to has five main pages: Home, Search, Login, Hikes and Ratings. The Home page has short descriptions of the other 4 pages and buttons that link to each one. The Search page allows you to add, edit and delete Locations in the database that Hikes can be associated to. It also shows all current Locations and allows you to search for Hikes based on multiple different Hike attributes. The Login page displays all current users in the database and allows the user to login or add, update or delete an account. The Hikes page displays all Hikes in the database and allows a user to add, edit or delete hikes. The final page, Ratings, allows a user to add, update or delete a rating that is associated with a hike.
+
+Database Outline:
+    ● Hikes: records the hike details that are available for people to travel on
+          hikeID: int, auto_increment, unique, not NULL, PK
+          hikeName: varchar, not NULL. The hike’s name.
+          distance: double (miles), can be unknown/null
+          elevation: double (feet), can be unknown/null
+          difficulty: int, must be between 1 and 5, can be unknown/null
+          averageRating: string, nullable, default 0.
+● People: records the people that have been registered in the database to travel hikes
+    ○ peopleID: int, auto_increment, unique, not NULL, PK
+    ○ firstName: varchar, not NULL. The persons first name.
+    ○ lastName: varchar, not NULL. The persons last name.
+    ○ username: varchar, unique, not NULL. The person’s chosen login name
+    ○ password: varchar, not NULL. The person’s chosen password
+● Locations: records the details of the locations that have hikes
+○ locationID- auto increment integer ID up to 10 digits, which will be used to identify the
+address with a key. Cannot be blank. Default will auto increment the number. PK.
+○ Cardinal direction - Cardinal direction portion of the address. Can be North, S, E, W, SW,
+NE, SE, NW
+○ state​ - Is the state where the address is located. Consists of a varchar with a max of 127
+characters. Cannot be blank since every address must have a state. Since the hike only exists in one state.
+○ city​ - The city where the address is located. Consists of a varchar with a max of 127 characters. Cannot be blank since every hike must have a city. Since the hike only exists in one city.
+○ zipCode​ - This is the zip code describing the location of the address according to the United States zip code postal code. Consists of a var character . Will be 5 digits in length. Cannot be blank since every address has a zip code. The is no Default.
+○ hikeID (foreign key)​: int, auto_increment, unique, not NULL
+● Ratings​: records the ratings for the Hike
+○ ratingID​: int, auto_increment, unique, not NULL, PK.
+○ ratingScore​: int, not NULL,must be between 1 and 5
+○ ratingTime​: date, not NULL
+○ hikeID (foreign key): ​int, auto_increment, unique, not NULL
+○ peopleID (foreign key)​: int, auto_increment, unique, not NULL
+Relationships in database:
+● Locations​ - ​(hike -> locations - one to one):​ Exactly one hike can be at exactly one
+address and vice - versa. Thus the relationship is one to one. Implemented with hikeID as
+a FK inside of Locations
+● Ratings​ - ​(hike -> ratings - one to many):​ Every rating is only connected to one hike but
+a hike can have multiple ratings. Implemented with hikeID as a FK inside of Ratings
+● Ratings​ - ​(people -> ratings - one to many​): Every rating is only connected to one
+person but a person can have multiple ratings on hikes. Implemented with PeopleID as a
+FK inside of Ratings
+● People​ - ​(hike -> people - many to many)​: Multiple people can go on the same hike and
+multiple hikes can be associated with one person. Implemented with HikeID as a FK inside of People
