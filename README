@@ -7,42 +7,44 @@ The website that our database is connected to has five main pages: Home, Search,
 
 Database Outline:
     ● Hikes: records the hike details that are available for people to travel on
-          hikeID: int, auto_increment, unique, not NULL, PK
-          hikeName: varchar, not NULL. The hike’s name.
-          distance: double (miles), can be unknown/null
-          elevation: double (feet), can be unknown/null
-          difficulty: int, must be between 1 and 5, can be unknown/null
-          averageRating: string, nullable, default 0.
-● People: records the people that have been registered in the database to travel hikes
-    ○ peopleID: int, auto_increment, unique, not NULL, PK
-    ○ firstName: varchar, not NULL. The persons first name.
-    ○ lastName: varchar, not NULL. The persons last name.
-    ○ username: varchar, unique, not NULL. The person’s chosen login name
-    ○ password: varchar, not NULL. The person’s chosen password
-● Locations: records the details of the locations that have hikes
-○ locationID- auto increment integer ID up to 10 digits, which will be used to identify the
-address with a key. Cannot be blank. Default will auto increment the number. PK.
-○ Cardinal direction - Cardinal direction portion of the address. Can be North, S, E, W, SW,
-NE, SE, NW
-○ state​ - Is the state where the address is located. Consists of a varchar with a max of 127
-characters. Cannot be blank since every address must have a state. Since the hike only exists in one state.
-○ city​ - The city where the address is located. Consists of a varchar with a max of 127 characters. Cannot be blank since every hike must have a city. Since the hike only exists in one city.
-○ zipCode​ - This is the zip code describing the location of the address according to the United States zip code postal code. Consists of a var character . Will be 5 digits in length. Cannot be blank since every address has a zip code. The is no Default.
-○ hikeID (foreign key)​: int, auto_increment, unique, not NULL
-● Ratings​: records the ratings for the Hike
-○ ratingID​: int, auto_increment, unique, not NULL, PK.
-○ ratingScore​: int, not NULL,must be between 1 and 5
-○ ratingTime​: date, not NULL
-○ hikeID (foreign key): ​int, auto_increment, unique, not NULL
-○ peopleID (foreign key)​: int, auto_increment, unique, not NULL
+        ○ hikeID: int, auto_increment, unique, not NULL, PK
+        ○ hikeName: varchar, not NULL. The hike’s name.
+        ○ distance: double (miles), can be unknown/null
+        ○ elevation: double (feet), can be unknown/null
+        ○ difficulty: int, must be between 1 and 5, can be unknown/null
+        ○ averageRating: string, nullable, default 0.
+    ● People: records the people that have been registered in the database to travel hikes
+        ○ peopleID: int, auto_increment, unique, not NULL, PK
+        ○ firstName: varchar, not NULL. The persons first name.
+        ○ lastName: varchar, not NULL. The persons last name.
+        ○ username: varchar, unique, not NULL. The person’s chosen login name
+        ○ password: varchar, not NULL. The person’s chosen password
+    ● Locations: records the details of the locations that have hikes
+        ○ locationID- auto increment integer ID up to 10 digits, which will be used to identify the
+          address with a key. Cannot be blank. Default will auto increment the number. PK.
+        ○ Cardinal direction - Cardinal direction portion of the address. Can be North, S, E, W, SW,
+          NE, SE, NW
+        ○ state - Is the state where the address is located. Consists of a varchar with a max of 127
+                  characters. Cannot be blank since every address must have a state. Since the hike only exists in one state.
+        ○ city - The city where the address is located. Consists of a varchar with a max of 127 characters. 
+                 Cannot be blank since every hike must have a city. Since the hike only exists in one city.
+        ○ zipCode - This is the zip code describing the location of the address according to the United States zip code postal code. 
+                    Consists of a var character . Will be 5 digits in length. Cannot be blank since every address has a zip code. The is no Default.
+        ○ hikeID (foreign key): int, auto_increment, unique, not NULL
+    ● Ratings: records the ratings for the Hike
+        ○ ratingID: int, auto_increment, unique, not NULL, PK.
+        ○ ratingScore: int, not NULL,must be between 1 and 5
+        ○ ratingTime: date, not NULL
+        ○ hikeID (foreign key): int, auto_increment, unique, not NULL
+        ○ peopleID (foreign key): int, auto_increment, unique, not NULL
 Relationships in database:
-● Locations​ - ​(hike -> locations - one to one):​ Exactly one hike can be at exactly one
-address and vice - versa. Thus the relationship is one to one. Implemented with hikeID as
-a FK inside of Locations
-● Ratings​ - ​(hike -> ratings - one to many):​ Every rating is only connected to one hike but
-a hike can have multiple ratings. Implemented with hikeID as a FK inside of Ratings
-● Ratings​ - ​(people -> ratings - one to many​): Every rating is only connected to one
-person but a person can have multiple ratings on hikes. Implemented with PeopleID as a
-FK inside of Ratings
-● People​ - ​(hike -> people - many to many)​: Multiple people can go on the same hike and
-multiple hikes can be associated with one person. Implemented with HikeID as a FK inside of People
+    ● Locations - (hike -> locations - one to one): Exactly one hike can be at exactly one
+                   address and vice - versa. Thus the relationship is one to one. Implemented with hikeID as
+                   a FK inside of Locations
+    ● Ratings - (hike -> ratings - one to many): Every rating is only connected to one hike but
+                 a hike can have multiple ratings. Implemented with hikeID as a FK inside of Ratings
+    ● Ratings - (people -> ratings - one to many): Every rating is only connected to one
+                person but a person can have multiple ratings on hikes. Implemented with PeopleID as a
+                FK inside of Ratings
+    ● People - (hike -> people - many to many): Multiple people can go on the same hike and
+                multiple hikes can be associated with one person. Implemented with HikeID as a FK inside of People
